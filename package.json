@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/nperez0111/howWideIsIt/issues"
   },
-  "homepage": "https://github.com/nperez0111/howWideIsIt#readme"
+  "homepage": "https://github.com/nperez0111/howWideIsIt#readme",
+  "dependencies": {
+    "memoize": "^0.1.1"
+  }
 }
