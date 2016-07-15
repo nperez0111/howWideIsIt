@@ -19,7 +19,7 @@ var getUsage = require( 'command-line-usage' ),
         name: 'length',
         alias: 'l',
         typeLabel: '[underline]{number}',
-        description: "The length of the diaganol inches across. "
+        description: "The length of the diagonal inches across. "
     } ],
     parsedArgs = commandLineArgs( optionDefinitions ),
     argsLength = ( Object.keys( parsedArgs ).filter( function ( a ) {
@@ -29,7 +29,7 @@ var getUsage = require( 'command-line-usage' ),
 
 function prettyPrint( obj ) {
     console.log( getUsage( [ {
-        header: 'Results for ' + obj.aspRatio + ' ' + obj.diaganol + "' TV",
+        header: 'Results for ' + obj.aspRatio + ' ' + obj.diagonal + "' TV",
         content: [ {
             desc: 'Width is:',
             example: obj.width + "'"
@@ -44,7 +44,7 @@ function prettyPrint( obj ) {
 function printHelp() {
     console.log( getUsage( [ {
         header: 'How Wide Is It Cli Tool',
-        content: 'This Program helps determine the actual dimensions of a tv when given the aspect ratio and diaganol inches.'
+        content: 'This Program helps determine the actual dimensions of a tv when given the aspect ratio and diagonal inches.'
     }, {
         header: 'Options',
         optionList: optionDefinitions

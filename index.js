@@ -35,7 +35,7 @@ module.exports = function ( aspWidth, aspHeight, lengthDiag ) {
         height: computeHeight( aspWidth, aspHeight, lengthDiag ),
         width: computeWidth( aspWidth, aspHeight, lengthDiag ),
         aspRatio: aspWidth + ':' + aspHeight,
-        diaganol: lengthDiag
+        diagonal: lengthDiag
     }
 }
 
@@ -55,6 +55,6 @@ module.exports.diag = function ( aspWidth, aspHeight, length, isWidth ) {
         height: isWidth ? aspHeight * length / aspWidth : length,
         width: isWidth ? length : aspWidth * length / aspHeight,
         aspRatio: aspWidth + ':' + aspHeight,
-        diaganol: lengthDiag
+        diagonal: lengthDiag
     }
 }

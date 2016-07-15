@@ -13,7 +13,7 @@ console.log( actualSize( 16, 9, 27 ) );
 	height: 13.237053470079092,
 	width: 23.53253950236283,
 	aspRatio: '16:9',
-	diaganol: 27 
+	diagonal: 27 
 }
 
 console.log( actualSize( {
@@ -26,7 +26,7 @@ console.log( actualSize( {
 	height: 13.237053470079092,
 	width: 23.53253950236283,
 	aspRatio: '16:9',
-	diaganol: 27 
+	diagonal: 27 
 }
 
 ````
@@ -43,7 +43,7 @@ console.log( actualSize.diag( 16, 9, 23 ) );
   height: 12.9375,
   width: 23,
   aspRatio: '16:9',
-  diaganol: 26.388992141610863
+  diagonal: 26.388992141610863
   }
   
 console.log( actualSize.diag( {
@@ -57,6 +57,6 @@ console.log( actualSize.diag( {
   height: 12.9375,
   width: 23,
   aspRatio: '16:9',
-  diaganol: 26.388992141610863
+  diagonal: 26.388992141610863
   }
 ````
