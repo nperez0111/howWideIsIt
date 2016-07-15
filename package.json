@@ -2,7 +2,6 @@
     "name": "how-wide-is-it",
     "version": "0.0.2",
     "description": "Tells you how wide and tall a monitor is when given the aspect ratio and diaganol length.",
-    "main": "index.js",
     "scripts": {
         "test": "node test"
     },
@@ -16,5 +15,12 @@
         "url": "https://github.com/nperez0111/howWideIsIt/issues"
     },
     "homepage": "https://github.com/nperez0111/howWideIsIt#readme",
-    "dependencies": {}
+    "dependencies": {
+        "command-line-args": "^3.0.0",
+        "command-line-usage": "^3.0.3"
+    },
+    "preferGlobal": true,
+    "bin": {
+        "how-wide": "bin/index.js"
+    }
 }
