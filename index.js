@@ -1,5 +1,3 @@
-var memo = require( 'memoize' );
-
 function computeUnit( aspWidth, aspHeight, lengthDiag ) {
     var c = Math.pow( lengthDiag, 2 ),
         b = Math.pow( aspHeight, 2 ),
