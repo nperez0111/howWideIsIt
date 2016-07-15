@@ -2,6 +2,13 @@
 
 var getUsage = require( 'command-line-usage' ),
     commandLineArgs = require( 'command-line-args' ),
+    contently = [ {
+        name: 'default',
+        summary: 'Use this mode if you have the aspect ratio and the diagonal. Does not need to be specified.'
+    }, {
+        name: 'diagonal',
+        summary: "Use this mode if you have the aspect ratio and one side. The side defaults to the width but can be reversed by adding the -r flag. Usage: how-wide diagonal -w 16 -h 9 -l 23 "
+    } ],
     optionDefinitions = [ {
         name: 'help',
         description: 'Display this usage guide.'
@@ -19,7 +26,11 @@ var getUsage = require( 'command-line-usage' ),
         name: 'length',
         alias: 'l',
         typeLabel: '[underline]{number}',
-        description: "The length of the diagonal inches across. "
+        description: "The length of the diagonal inches across. OR if in diagonal mode the length of the width side."
+    }, {
+        name: 'reverse',
+        alias: 'r',
+        description: 'If in diagonal mode this reverses the length to be on the height side.'
     } ],
     parsedArgs = commandLineArgs( optionDefinitions ),
     argsLength = ( Object.keys( parsedArgs ).filter( function ( a ) {
@@ -45,6 +56,9 @@ function printHelp() {
     console.log( getUsage( [ {
         header: 'How Wide Is It Cli Tool',
         content: 'This Program helps determine the actual dimensions of a tv when given the aspect ratio and diagonal inches.'
+    }, {
+        header: 'Command List',
+        content: contently
     }, {
         header: 'Options',
         optionList: optionDefinitions
