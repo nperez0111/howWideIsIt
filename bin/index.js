@@ -98,7 +98,7 @@ if ( process.argv.slice( 2 ).length == 3 ) {
 
 } else {
     if ( parsedArgs.diag == true ) {
-        prettyPrint( warnPrior( final.diag( parseFloat( parsedArgs.width ), parseFloat( parsedArgs.height ), parseFloat( parsedArgs.length ), parsedArgs.reverse === undefined ? true : parsedArgs.reverse ) ) );
+        prettyPrint( warnPrior( final.diag( parseFloat( parsedArgs.width ), parseFloat( parsedArgs.height ), parseFloat( parsedArgs.length ), parsedArgs.reverse === undefined ? true : !parsedArgs.reverse ) ) );
     } else {
         prettyPrint( final( parseFloat( parsedArgs.width ), parseFloat( parsedArgs.height ), parseFloat( parsedArgs.length ) ) )
     }
