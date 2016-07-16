@@ -32,10 +32,10 @@ module.exports = function ( aspWidth, aspHeight, lengthDiag ) {
         aspWidth = aspWidth.width;
     }
     return {
-        height: computeHeight( aspWidth, aspHeight, lengthDiag ),
-        width: computeWidth( aspWidth, aspHeight, lengthDiag ),
+        height: computeHeight( aspWidth, aspHeight, lengthDiag ).toFixed( module.exports.truncate ),
+        width: computeWidth( aspWidth, aspHeight, lengthDiag ).toFixed( module.exports.truncate ),
         aspRatio: aspWidth + ':' + aspHeight,
-        diagonal: lengthDiag
+        diagonal: ( lengthDiag ).toFixed( module.exports.truncate )
     }
 }
 
@@ -52,9 +52,11 @@ module.exports.diag = function ( aspWidth, aspHeight, length, isWidth ) {
         lengthDiag = computeDiag( aspWidth, aspHeight || 0, length || 0, isWidth );
     }
     return {
-        height: isWidth ? aspHeight * length / aspWidth : length,
-        width: isWidth ? length : aspWidth * length / aspHeight,
+        height: ( isWidth ? aspHeight * length / aspWidth : length ).toFixed( module.exports.truncate ),
+        width: ( isWidth ? length : aspWidth * length / aspHeight ).toFixed( module.exports.truncate ),
         aspRatio: aspWidth + ':' + aspHeight,
-        diagonal: lengthDiag
+        diagonal: ( lengthDiag ).toFixed( module.exports.truncate )
     }
 }
+
+module.exports.truncate = 16;

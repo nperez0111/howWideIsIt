@@ -41,7 +41,7 @@ var getUsage = require( 'command-line-usage' ),
         return a == 'height' || a == 'width' || a == 'length'
     } ) ).length,
     final = require( './../index.js' );
-
+final.truncate = 2;
 
 function prettyPrint( obj ) {
     console.log( getUsage( [ {
