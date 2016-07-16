@@ -1,6 +1,8 @@
 # How-Wide-Is-It
 Tells you how wide a monitor is when given the dimensions and aspect ratio. Or what the size of the monitor should be to fill up a certain width or height
 
+![](how-wide.gif)
+
 ## Install:
 ### For use in your JS
 `npm i how-wide-is-it --save`
