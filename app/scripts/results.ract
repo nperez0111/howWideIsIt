@@ -1,0 +1,21 @@
+<ul>
+		<li>Height:{{height}}</li>
+		<li>Width:{{width}}</li>
+		<li>Aspect Ratio:{{aspectRatio}}</li>
+		<li>Diagonal:{{diagonal}}</li>
+	</ul>
+	<script>
+    component.exports =  ({
+
+        isolated: true,
+        data: {
+            title: "we good"
+        },
+        computed: {
+
+        },
+        oncomplete: function () {
+            console.log('ok')
+        }
+    });
+</script>
