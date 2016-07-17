@@ -41,10 +41,10 @@ module.exports = function ( aspWidth, aspHeight, lengthDiag ) {
         return undefined;
     }
     return {
-        height: computeHeight( aspWidth, aspHeight, lengthDiag ).toFixed( module.exports.truncate ),
-        width: computeWidth( aspWidth, aspHeight, lengthDiag ).toFixed( module.exports.truncate ),
+        height: parseNum( computeHeight( aspWidth, aspHeight, lengthDiag ) ),
+        width: parseNum( computeWidth( aspWidth, aspHeight, lengthDiag ) ),
         aspRatio: aspWidth + ':' + aspHeight,
-        diagonal: ( lengthDiag ).toFixed( module.exports.truncate )
+        diagonal: parseNum( lengthDiag )
     }
 }
 
