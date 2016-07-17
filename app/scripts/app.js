@@ -13,7 +13,11 @@ window.main = new Ract( {
         } );
         this.on( 'other', () => {
             this.set( 'commonRatios', !this.get( 'commonRatios' ) );
-        } )
+        } );
+        this.on( 'setRatio', ( event, width ) => {
+            this.set( 'toSub.width', Number( width.split( ':' )[ 0 ] ) );
+            this.set( 'toSub.height', Number( width.split( ':' )[ 1 ] ) );
+        } );
         this.on( 'submitAll', () => {
             this.calculate();
         } );
@@ -45,6 +49,9 @@ window.main = new Ract( {
                 width: 21,
                 aspRatio: '16:9',
                 diagonal: 24.0942971727751392
+            },
+            isSet: function ( w, h ) {
+                return ( w == this.get( 'toSub.width' ) && h == this.get( 'toSub.height' ) ) ? 'isSet' : '';
             },
             isActive: function ( cur ) {
                 let val = cur == 'diag' ? 0 : 1;

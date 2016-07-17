@@ -51,6 +51,7 @@ body {
 .inps {
     flex: 2;
     display: flex;
+    min-height: 230px;
     label {
         display: block;
         max-width: 250px;
