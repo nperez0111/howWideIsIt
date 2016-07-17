@@ -1,0 +1,12 @@
+{
+  "name": "how-wide-is-it",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "jQuery": "~1.11.1"
+  },
+  "devDependencies": {
+    "chai": "^1.9.1",
+    "mocha": "^1.21.4"
+  }
+}

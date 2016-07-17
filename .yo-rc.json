@@ -1,0 +1,6 @@
+{
+  "generator-ractive": {
+    "loadMethod": "browserify",
+    "testFramework": "mocha"
+  }
+}
