@@ -1,21 +1,37 @@
 <ul>
-		<li>Height:{{height}}</li>
-		<li>Width:{{width}}</li>
-		<li>Aspect Ratio:{{aspectRatio}}</li>
-		<li>Diagonal:{{diagonal}}</li>
-	</ul>
-	<script>
-    component.exports =  ({
+	<li>Height:{{height}}</li>
+	<li>Width:{{width}}</li>
+	<li>Aspect Ratio:{{aspectRatio}}</li>
+	<li>Diagonal:{{diagonal}}</li>
+</ul>
 
-        isolated: true,
-        data: {
-            title: "we good"
-        },
-        computed: {
+<svg width='{{widthOfScreen}}px' height='{{heightOfScreen}}px' >
+	<g>
+		<rect width='{{widthOfScreen}}px' height='{{heightOfScreen}}px'></rect>
+	</g>
+</svg>
 
-        },
-        oncomplete: function () {
-            console.log('ok')
-        }
-    });
+<script>
+const WIDTH=window.innerWidth-100;
+component.exports =  {
+
+    isolated: true,
+    data: {
+    	width:0,
+    	height:0,
+    	aspectRatio:'0',
+    	diagonal:0
+    },
+    computed: {
+    	widthOfScreen:{get:function(){
+			return WIDTH;
+    	}},
+    	heightOfScreen:{get:function(){
+    		return Math.round(this.get('height')*WIDTH/this.get('width'))
+    	}}
+    },
+    oncomplete: function () {
+        console.log('ok')
+    }
+};
 </script>

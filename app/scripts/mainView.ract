@@ -24,6 +24,6 @@
 </div>
 <div class="response">
 	{{#resp}}
-	<displayresults height='{{height}}' width='{{width}}' aspectRatio='{{aspRatio}}' diagonal='{{diagonal}}' />	
+	<displayresults height='{{height}}' width='{{width}}' aspectRatio='{{aspRatio}}' diagonal='{{diagonal}}' mode='{{currentMode}}' />	
 	{{/resp}}
 </div>
