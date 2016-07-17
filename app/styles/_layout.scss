@@ -1,3 +1,4 @@
+$bg:#4898dc;
 *, *:before, *:after {
     box-sizing: border-box;
 }
@@ -7,7 +8,7 @@ html, body {
 }
 
 body {
-    background: #4898dc;
+    background: $bg;
     color: #333;
     display: flex;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -21,7 +22,6 @@ body {
     width: 100%;
     height: 100%;
     align-items: center;
-    justify-content: space-around;
     display: flex;
     flex-direction: column;
 }
@@ -31,25 +31,66 @@ body {
     display: flex;
     margin-bottom: 20px;
     flex: 1;
+    min-height: 100px;
     .half {
         flex: 1;
         margin: 0;
         padding: 0;
         &.isActive {
-            background-color: lighten(#4898dc, 20%);
+            background-color: lighten($bg, 20%);
         }
     }
 }
 
+.info {
+    cursor: pointer;
+    font-size: 24px;
+    color: #EEE;
+}
+
 .inps {
     flex: 2;
+    display: flex;
     label {
         display: block;
-        max-width: 180px;
+        max-width: 250px;
         /*temporary*/
+    }
+    .half {
+        flex: 1;
+        margin: 0;
+        padding: 15px;
+        .container {
+            display: flex;
+            margin-bottom: 30px;
+            .quarter, .item {
+                flex: 1;
+            }
+            .item {
+                margin: 5px;
+            }
+        }
+        .other {
+            float: right;
+        }
     }
 }
 
 .response {
     flex: 3;
+}
+
+svg {
+    rect, line {
+        stroke: #222;
+        stroke-width: 4px;
+        fill: $bg;
+        stroke-dasharray: 12px;
+    }
+    line {
+        stroke-dasharray: none
+    }
+    text {
+        font-family: "Lucida Console", Monaco, monospace;
+    }
 }

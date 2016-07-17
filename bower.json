@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
-    "jQuery": "~1.11.1"
+    "jQuery": "~1.11.1",
+    "hint.css": "^2.3.1"
   },
   "devDependencies": {
     "chai": "^1.9.1",

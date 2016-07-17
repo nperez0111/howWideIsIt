@@ -1,18 +1,45 @@
-<ul>
+<!--<ul>
 	<li>Height:{{height}}</li>
 	<li>Width:{{width}}</li>
 	<li>Aspect Ratio:{{aspectRatio}}</li>
 	<li>Diagonal:{{diagonal}}</li>
-</ul>
+</ul>-->
 
 <svg width='{{widthOfScreen}}px' height='{{heightOfScreen}}px' >
 	<g>
 		<rect width='{{widthOfScreen}}px' height='{{heightOfScreen}}px'></rect>
+		
+		<text transform='translate({{widthOfScreen/2}},{{heightOfScreen-10}})' class='label'>
+			{{width}}"
+		</text>
+
+		<text transform='translate({{widthOfScreen-10}},{{heightOfScreen/2}}),rotate(-90)' class='label'>
+			{{height}}"
+		</text>
+
+		<text transform='translate(10,22)' class='aspRatio'>
+			{{aspectRatio}} Monitor
+		</text>
+
+		<text transform='translate({{(widthOfScreen/2)-(10*Math.floor(diagonal.toString().length/2))}},{{heightOfScreen/2+5}})' class='aspRatio'>
+			{{diagonal}}"
+		</text>
+		
+		<line y1='0' x1='{{widthOfScreen}}' x2='{{(widthOfScreen+offset)/2}}' y2='{{((heightOfScreen-offset)/2)+11}}'><!--TOP--></line>
+
+		<line x1='0' y1='{{heightOfScreen}}' x2='{{(widthOfScreen-offset)/2}}' y2='{{((heightOfScreen+offset)/2)-11}}'><!--Bottom--></line>
+		
+
 	</g>
 </svg>
 
 <script>
-const WIDTH=window.innerWidth-100;
+function getWidth(){
+	return window.innerWidth-100;
+}
+function getHeight(){
+	return window.innerHeight-100;
+}
 component.exports =  {
 
     isolated: true,
@@ -20,18 +47,19 @@ component.exports =  {
     	width:0,
     	height:0,
     	aspectRatio:'0',
-    	diagonal:0
+    	diagonal:0,
+    	offset:50
     },
     computed: {
     	widthOfScreen:{get:function(){
-			return WIDTH;
+			return getWidth()>getHeight()?getHeight():getWidth();
     	}},
     	heightOfScreen:{get:function(){
-    		return Math.round(this.get('height')*WIDTH/this.get('width'))
+    		return getWidth()>getHeight()?Math.round(this.get('height')*getHeight()/this.get('width')):Math.round(this.get('height')*getWidth()/this.get('width'))
     	}}
     },
     oncomplete: function () {
-        console.log('ok')
+        console.log('ok');
     }
 };
 </script>

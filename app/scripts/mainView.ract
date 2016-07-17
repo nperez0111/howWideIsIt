@@ -4,22 +4,67 @@
 <div class="modes">
 	<div class="half {{isActive('diag')}}" on-click="setMode:0">
 		<h3>You have a Diagonal Measurement</h3>
-		<p>You have a diagonal measurement and are looking to see the true width of the monitor or TV.</p>
+		<p>You have a diagonal measurement and are looking to see the true dimensions of the monitor or TV.</p>
 	</div>
 	<div class="half {{isActive('side')}}" on-click="setMode:1">
 		<h3>You have a Side Measurement</h3>
-		<p>You have a space where you would like to place a monitor. You are looking to see what would fit in this space.</p>
+		<p>If you have a certain width or height that you would like to fill up with screen space this is the mode for you.</p>
 	</div>
 </div>
 <div class="inps">
 	{{#toSub}}
-		<label for="width">Aspect Ratio Width:</label><input type="number" value="{{width}}" id="width">
-		<label for="height">Aspect Ratio height:</label><input type="number" value="{{height}}" id="height">
-		<label for="length">{{currentMode==0?'Diagonal Length':'Length on Side'}}:</label><input type="number" value="{{length}}" id="length">
-		{{#if currentMode==1}}
-			<label for='whichSide'>Is the above for the Widest side of the screen?</label><input type="checkbox" id="whichSide" checked="{{lengthIsOnWideSide}}">
+	<div class="half">
+
+		<h4>Aspect Ratio: <span class='info hint--large hint--top hint--rounded' aria-label="Aspect Ratio is the ratio of the width of a screen to it's height, it's what makes newer screens so wide compared to old TVs which used to be square-ish. If you don't know you should probably just stick to 16:9 as that is the standard nowadays.">ⓘ</span></h4>
+
+		{{#if commonRatios}}
+		<div class="container">
+			<button class="quarter {{isSet(16,9)}}" on-click='setRatio:16:9'>16:9</button>
+
+			<button class="quarter {{isSet(4,3)}}" on-click='setRatio:4:3'>4:3</button>
+
+			<button class="quarter {{isSet(21,9)}}" on-click='setRatio:21:9'>21:9</button>
+
+			<button class="quarter {{isSet(21,10)}}" on-click='setRatio:21:10'>21:10</button>
+		</div>
+
+
+		{{else}}
+
+		<div class="container">
+			<div class="item">
+				<label for="width">Aspect Ratio Width:</label>
+				<input type="number" value="{{width}}" id="width">
+			</div>
+			<div class="item">
+				<label for="height">Aspect Ratio height:</label>
+				<input type="number" value="{{height}}" id="height">
+			</div>
+		</div>
+
 		{{/if}}
-		<button on-click="submitAll">Submit</button>
+		<button class='other' on-click='other'>{{commonRatios?'Other Ratio':'Common Ratios'}}</button>
+
+	</div>
+	<div class="half">
+
+		<h4>{{currentMode==0?'Diagonal Length':'Length on Side'}}: <span class='info hint--large hint--top hint--rounded' aria-label="{{currentMode==0 ? "Screens are typically measured diagonally which makes it hard to figure out it's actual dimensions before buying." : 'Just enter the length and select whether this is for the width of the screen or the height.'}}">ⓘ</span></h4>
+		<div class="container">
+			<div class="item">
+				<label for="length">Length:</label>
+				<input type="number" value="{{length}}" id="length">
+			</div>
+			<div class="item">
+				{{#if currentMode==1}}
+					<label for='whichSide'>Is length for Widest side of the screen?</label>
+					<input type="checkbox" id="whichSide" checked="{{lengthIsOnWideSide}}">
+				{{/if}}
+			</div>
+		</div>
+		
+		
+		<button on-click="submitAll" class='other'>Submit</button>
+	</div>
 	{{/toSub}}
 </div>
 <div class="response">

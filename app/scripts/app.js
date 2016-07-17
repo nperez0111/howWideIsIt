@@ -11,6 +11,9 @@ window.main = new Ract( {
         this.on( 'setMode', ( event, modeToSetTo ) => {
             this.set( 'currentMode', modeToSetTo );
         } );
+        this.on( 'other', () => {
+            this.set( 'commonRatios', !this.get( 'commonRatios' ) );
+        } )
         this.on( 'submitAll', () => {
             this.calculate();
         } );
@@ -25,7 +28,7 @@ window.main = new Ract( {
         } else if ( currentMode == 1 ) {
             val = howWide.diag( a.width, a.height, a.length, a.lengthIsOnWideSide );
         }
-        this.set( 'resp', val );
+        this.animate( 'resp', val );
     },
     data: () => {
         return {
@@ -46,7 +49,8 @@ window.main = new Ract( {
             isActive: function ( cur ) {
                 let val = cur == 'diag' ? 0 : 1;
                 return this.get( 'currentMode' ) == val ? 'isActive' : '';
-            }
+            },
+            commonRatios: true
         }
     },
     components: {
