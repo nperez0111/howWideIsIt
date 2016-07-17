@@ -1,6 +1,6 @@
 {
     "name": "how-wide-is-it",
-    "version": "0.2.1",
+    "version": "0.2.2",
     "description": "Tells you how wide and tall a monitor is when given the aspect ratio and diaganol length.",
     "scripts": {
         "test": "node test"
