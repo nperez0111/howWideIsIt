@@ -60,7 +60,7 @@ module.exports = function ( grunt ) {
                 files: [
                     '<%= config.app %>/{,*/}*.html',
                     '.tmp/styles/{,*/}*.css',
-                    '.tmp/scripts/{,*/}*.js',
+                    '.tmp/scripts/**/*.js',
                     '<%= config.app %>/images/{,*/}*'
                 ]
             }
@@ -73,7 +73,7 @@ module.exports = function ( grunt ) {
                 open: false,
                 livereload: 35729,
                 // Change this to '0.0.0.0' to access the server from outside
-                hostname: '0.0.0.0'
+                hostname: '10.0.0.5'
             },
             livereload: {
                 options: {
@@ -375,7 +375,7 @@ module.exports = function ( grunt ) {
         '--allow-remote for remote access',
         function ( target ) {
             if ( grunt.option( 'allow-remote' ) ) {
-                grunt.config.set( 'connect.options.hostname', '0.0.0.0' );
+                grunt.config.set( 'connect.options.hostname', '10.0.0.5' );
             }
             if ( target === 'dist' ) {
                 return grunt.task.run( [ 'build', 'connect:dist:keepalive' ] );

@@ -1,1 +1,16 @@
-just a test
+{{#toSub}}
+<label for="width">Aspect Ratio Width:</label><input type="number" value="{{width}}" id="width">
+<label for="height">Aspect Ratio height:</label><input type="number" value="{{height}}" id="height">
+<label for="length">Length:</label><input type="number" value="{{length}}" id="length">
+<button on-click="submitAll">Submit</button>
+{{/toSub}}
+<div class="response">
+	{{#resp}}
+	<ul>
+		<li>{{height}}</li>
+		<li>{{width}}</li>
+		<li>{{aspRatio}}</li>
+		<li>{{diagonal}}</li>
+	</ul>	
+	{{/resp}}
+</div>
