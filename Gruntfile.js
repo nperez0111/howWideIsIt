@@ -1,4 +1,4 @@
-// Generated on 2016-07-17 using
+// Generated on 2016-05-30 using
 // generator-ractive 0.2.0
 'use strict';
 
@@ -12,7 +12,7 @@ module.exports = function ( grunt ) {
 
     // Time how long tasks take. Can help when optimizing build times
     require( 'time-grunt' )( grunt );
-
+    var serveStatic = require( 'serve-static' );
     // Load grunt tasks automatically
     require( 'load-grunt-tasks' )( grunt );
 
@@ -35,8 +35,12 @@ module.exports = function ( grunt ) {
                 tasks: [ 'wiredep' ]
             },
             jstest: {
-                files: [ 'test/**/*.js' ],
+                files: [ 'test/{,*/}*.js' ],
                 tasks: [ 'test:watch' ]
+            },
+            scripts: {
+                files: [ '<%= config.app %>/scripts/**/*.js', '<%= config.app %>/scripts/**/*.ract' ],
+                tasks: [ 'browserify:dist' ]
             },
             gruntfile: {
                 files: [ 'Gruntfile.js' ]
@@ -56,8 +60,7 @@ module.exports = function ( grunt ) {
                 files: [
                     '<%= config.app %>/{,*/}*.html',
                     '.tmp/styles/{,*/}*.css',
-                    '.tmp/scripts/**/*.js',
-                    '<%= config.app %>/scripts/**/*.js',
+                    '.tmp/scripts/{,*/}*.js',
                     '<%= config.app %>/images/{,*/}*'
                 ]
             }
@@ -76,9 +79,9 @@ module.exports = function ( grunt ) {
                 options: {
                     middleware: function ( connect ) {
                         return [
-                            connect.static( '.tmp' ),
-                            connect().use( '/bower_components', connect.static( './bower_components' ) ),
-                            connect.static( config.app )
+                            serveStatic( '.tmp' ),
+                            connect().use( '/bower_components', serveStatic( './bower_components' ) ),
+                            serveStatic( config.app )
                         ];
                     }
                 }
@@ -89,10 +92,10 @@ module.exports = function ( grunt ) {
                     port: 9001,
                     middleware: function ( connect ) {
                         return [
-                            connect.static( '.tmp' ),
-                            connect.static( 'test' ),
-                            connect().use( '/bower_components', connect.static( './bower_components' ) ),
-                            connect.static( config.app )
+                            serveStatic( '.tmp' ),
+                            serveStatic( 'test' ),
+                            connect().use( '/bower_components', serveStatic( './bower_components' ) ),
+                            serveStatic( config.app )
                         ];
                     }
                 }
@@ -128,8 +131,8 @@ module.exports = function ( grunt ) {
             },
             all: [
                 'Gruntfile.js',
-                '<%= config.app %>/scripts/**/*.js',
-                'test/**/*.js'
+                '<%= config.app %>/scripts/{,*/}*.js',
+                'test/{,*/}*.js'
             ]
         },
 
@@ -201,7 +204,7 @@ module.exports = function ( grunt ) {
             dist: {
                 files: {
                     src: [
-                        '<%= config.dist %>/scripts/**/*.js',
+                        '<%= config.dist %>/scripts/{,*/}*.js',
                         '<%= config.dist %>/styles/{,*/}*.css',
                         '<%= config.dist %>/images/{,*/}*.*',
                         '<%= config.dist %>/styles/fonts/{,*/}*.*',
@@ -214,8 +217,10 @@ module.exports = function ( grunt ) {
         // Build the application using Browserify
         browserify: {
             options: {
-                transform: [ 'ractify' ],
-                watch: true,
+                transform: [ 'ractify', [ 'debowerify', {
+                    preferNPM: true
+                } ] ],
+                watch: false,
                 browserifyOptions: {
                     debug: true
                 }
@@ -227,7 +232,7 @@ module.exports = function ( grunt ) {
             },
             test: {
                 files: {
-                    '.tmp/scripts/tests.js': 'test/**/*.js'
+                    '.tmp/scripts/tests.js': 'test/{,*/}*.js'
                 }
             }
         },
@@ -252,7 +257,16 @@ module.exports = function ( grunt ) {
         },
 
         // The following *-min tasks produce minified files in the dist folder
-
+        imagemin: {
+            dist: {
+                files: [ {
+                    expand: true,
+                    cwd: '<%= config.app %>/images',
+                    src: '{,*/}*.{gif,jpeg,jpg,png}',
+                    dest: '<%= config.dist %>/images'
+                } ]
+            }
+        },
 
         svgmin: {
             dist: {
@@ -350,6 +364,7 @@ module.exports = function ( grunt ) {
             dist: [
                 'sass',
                 'copy:styles',
+                'imagemin',
                 'svgmin'
             ]
         }
