@@ -8,3 +8,8 @@ console.log( obj( {
 } ) )
 console.log( obj.diag( 16, 9, 23 ) )
 console.log( obj.diag( 16, 9, 23, false ) )
+console.log( obj.diag( {
+    width: 16,
+    height: 9,
+    length: 27
+} ) )

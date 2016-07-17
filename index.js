@@ -22,6 +22,12 @@ function computeDiag( aspW, aspH, length, bool ) {
     return Math.sqrt( Math.pow( length, 2 ) + Math.pow( val * multiplier, 2 ) );
 }
 
+function preReqsNoGood( arr ) {
+    return arr.reduce( function ( a, cur ) {
+        return a || Number( cur ) !== cur;
+    }, false );
+}
+
 module.exports = function ( aspWidth, aspHeight, lengthDiag ) {
     var aspWidth = aspWidth,
         aspHeight = aspHeight,
@@ -30,6 +36,9 @@ module.exports = function ( aspWidth, aspHeight, lengthDiag ) {
         aspHeight = aspWidth.height;
         lengthDiag = aspWidth.diag;
         aspWidth = aspWidth.width;
+    }
+    if ( preReqsNoGood( [ aspWidth, lengthDiag, aspHeight ] ) ) {
+        return undefined;
     }
     return {
         height: computeHeight( aspWidth, aspHeight, lengthDiag ).toFixed( module.exports.truncate ),
@@ -40,23 +49,31 @@ module.exports = function ( aspWidth, aspHeight, lengthDiag ) {
 }
 
 module.exports.diag = function ( aspWidth, aspHeight, length, isWidth ) {
-    var aspWidth = aspWidth,
-        aspHeight = aspHeight,
-        isWidth = isWidth === undefined ? true : isWidth,
-        lengthDiag = computeDiag( aspWidth, aspHeight || 0, length || 0, isWidth );
-    if ( aspHeight === undefined && length === undefined && isWidth === undefined ) {
+    var isWidth = isWidth === undefined ? true : isWidth;
+    if ( aspHeight === undefined && length === undefined ) {
         aspHeight = aspWidth.height;
         length = aspWidth.length;
-        isWidth = aspWidth.lengthIsOnWideSide;
+        isWidth = 'lengthIsOnWideSide' in aspWidth ? aspWidth.lengthIsOnWideSide : isWidth;
         aspWidth = aspWidth.width;
-        lengthDiag = computeDiag( aspWidth, aspHeight || 0, length || 0, isWidth );
+
+    }
+    var lengthDiag = computeDiag( aspWidth, aspHeight || 0, length || 0, isWidth );
+
+    if ( preReqsNoGood( [ aspWidth, length, aspHeight ] ) ) {
+        console.warn( 'Values inputted are not correct, if first value is an object check documentation for proper object input.', [ aspWidth, length, aspHeight ] );
+
+        return undefined;
     }
     return {
-        height: ( isWidth ? aspHeight * length / aspWidth : length ).toFixed( module.exports.truncate ),
-        width: ( isWidth ? length : aspWidth * length / aspHeight ).toFixed( module.exports.truncate ),
+        height: parseNum( isWidth ? aspHeight * length / aspWidth : length ),
+        width: parseNum( isWidth ? length : aspWidth * length / aspHeight ),
         aspRatio: aspWidth + ':' + aspHeight,
-        diagonal: ( lengthDiag ).toFixed( module.exports.truncate )
+        diagonal: parseNum( lengthDiag )
     }
+}
+
+function parseNum( num ) {
+    return Number( num.toFixed( module.exports.truncate ) );
 }
 
 module.exports.truncate = 16;
