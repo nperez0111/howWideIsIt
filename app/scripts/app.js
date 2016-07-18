@@ -10,6 +10,7 @@ window.main = new Ract( {
         console.log( 'we good in the hood' );
         this.on( 'setMode', ( event, modeToSetTo ) => {
             this.set( 'currentMode', modeToSetTo );
+            this.calculate();
         } );
         this.on( 'other', () => {
             this.set( 'commonRatios', !this.get( 'commonRatios' ) );
@@ -17,13 +18,26 @@ window.main = new Ract( {
         this.on( 'setRatio', ( event, width ) => {
             this.set( 'toSub.width', Number( width.split( ':' )[ 0 ] ) );
             this.set( 'toSub.height', Number( width.split( ':' )[ 1 ] ) );
+            this.calculate();
         } );
         this.on( 'submitAll', () => {
             this.calculate();
         } );
         this.calculate();
+        window.onresize = debounce( () => {
+            var temp = this.get( 'toSub.length' );
+            console.log( temp )
+            this.set( 'toSub.length', temp - 0.1 ).then( () => {
+                this.calculate( true ).then( () => {
+                    this.set( 'toSub.length', temp ).then( () => {
+                        this.calculate( true );
+                    } );
+                } );
+            } );
+
+        }, 50 );
     },
-    calculate: function () {
+    calculate: function ( quick ) {
         let a = this.get( 'toSub' ),
             val = 0,
             currentMode = this.get( 'currentMode' );
@@ -32,7 +46,7 @@ window.main = new Ract( {
         } else if ( currentMode == 1 ) {
             val = howWide.diag( a.width, a.height, a.length, a.lengthIsOnWideSide );
         }
-        this.animate( 'resp', val );
+        return quick ? this.set( 'resp', val ) : this.animate( 'resp', val );
     },
     data: () => {
         return {
@@ -64,3 +78,19 @@ window.main = new Ract( {
         displayresults: Ract.extend( require( './results.ract' ) )
     }
 } );
+
+function debounce( func, wait, immediate ) {
+    var timeout;
+    return function () {
+        var context = this,
+            args = arguments;
+        var later = function () {
+            timeout = null;
+            if ( !immediate ) func.apply( context, args );
+        };
+        var callNow = immediate && !timeout;
+        clearTimeout( timeout );
+        timeout = setTimeout( later, wait );
+        if ( callNow ) func.apply( context, args );
+    };
+};

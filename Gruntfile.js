@@ -219,7 +219,7 @@ module.exports = function ( grunt ) {
             options: {
                 transform: [ 'ractify', [ 'debowerify', {
                     preferNPM: true
-                } ] ],
+                } ], 'babelify' ],
                 watch: false,
                 browserifyOptions: {
                     debug: true

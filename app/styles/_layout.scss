@@ -15,6 +15,8 @@ body {
     justify-content: space-around;
     padding: 0;
     margin: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .hook {
@@ -32,12 +34,25 @@ body {
     margin-bottom: 20px;
     flex: 1;
     min-height: 100px;
+    @include bp(small) {
+        flex-direction: column;
+        min-height: 200px;
+    }
     .half {
         flex: 1;
         margin: 0;
         padding: 0;
+        h3 {
+            text-align: center;
+        }
         &.isActive {
             background-color: lighten($bg, 20%);
+            p {
+                background-color: lighten($bg, 20%);
+            }
+        }
+        p {
+            text-align: center;
         }
     }
 }
@@ -79,6 +94,18 @@ button {
     flex: 2;
     display: flex;
     min-height: 230px;
+    @include bp(small) {
+        flex-direction: column;
+        min-height: 460px;
+        width: 100%;
+        align-content: center;
+    }
+    @include bp(xsmall) {
+        margin-top: 30px;
+    }
+    @media(max-width:480px) {
+        min-height: 600px;
+    }
     label {
         display: block;
         max-width: 250px;
@@ -88,9 +115,24 @@ button {
         flex: 1;
         margin: 0;
         padding: 15px;
+        h4 {
+            text-align: center;
+        }
         .container {
             display: flex;
             margin-bottom: 30px;
+            @media(max-width: 480px) {
+                flex-direction: column;
+                align-content: center;
+                width: 100%;
+                .item {
+                    display: flex;
+                    align-content: center;
+                    label, input {
+                        flex: 1;
+                    }
+                }
+            }
             .quarter, .item {
                 flex: 1;
             }
@@ -104,8 +146,16 @@ button {
     }
 }
 
+
+/*figure out extra space when in small window*/
+
 .response {
     flex: 3;
+}
+
+.header {
+    flex: 1;
+    text-align: center;
 }
 
 svg {

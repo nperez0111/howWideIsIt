@@ -1,1 +1,23 @@
 // Variables
+@mixin bp($point) {
+    @if $point==big {
+        @media (max-width: 1600px) {
+            @content;
+        }
+    }
+    @else if $point==med {
+        @media (max-width: 1250px) {
+            @content;
+        }
+    }
+    @else if $point==small {
+        @media (max-width: 600px) {
+            @content;
+        }
+    }
+    @else if $point==xsmall {
+        @media (max-width: 320px) {
+            @content;
+        }
+    }
+}

@@ -35,14 +35,14 @@
 
 <script>
 function getWidth(){
-	return window.innerWidth-100;
-}
+	return document.body.clientWidth-100;
+}//neede to somehow scale with screen
 function getHeight(){
-	return window.innerHeight-100;
+	return document.body.clientHeight-100;
 }
 component.exports =  {
 
-    isolated: true,
+    isolated: false,
     data: {
     	width:0,
     	height:0,
@@ -52,10 +52,10 @@ component.exports =  {
     },
     computed: {
     	widthOfScreen:{get:function(){
-			return getWidth()>getHeight()?getHeight():getWidth();
+			return getWidth(this.get('width'))>getHeight()?getHeight():getWidth();
     	}},
     	heightOfScreen:{get:function(){
-    		return getWidth()>getHeight()?Math.round(this.get('height')*getHeight()/this.get('width')):Math.round(this.get('height')*getWidth()/this.get('width'))
+    		return getWidth(this.get('width'))>getHeight()?Math.round(this.get('height')*getHeight()/this.get('width')):Math.round(this.get('height')*getWidth()/this.get('width'))
     	}}
     },
     oncomplete: function () {
