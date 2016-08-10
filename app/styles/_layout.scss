@@ -1,9 +1,12 @@
 $bg:#4898dc;
-*, *:before, *:after {
+*,
+*:before,
+*:after {
     box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
     height: 100%;
 }
 
@@ -41,7 +44,8 @@ body {
     .half {
         flex: 1;
         margin: 0;
-        padding: 0;
+        padding: 10px 0;
+        cursor: pointer;
         h3 {
             text-align: center;
         }
@@ -83,7 +87,8 @@ button {
     &:hover {
         background-color: lighten($bg, 30%) !important;
     }
-    &:active, &.isSet {
+    &:active,
+    &.isSet {
         background-color: $bg;
         color: #eee;
         border: 1px solid #eee
@@ -128,12 +133,14 @@ button {
                 .item {
                     display: flex;
                     align-content: center;
-                    label, input {
+                    label,
+                    input {
                         flex: 1;
                     }
                 }
             }
-            .quarter, .item {
+            .quarter,
+            .item {
                 flex: 1;
             }
             .item {
@@ -160,7 +167,8 @@ button {
 }
 
 svg {
-    rect, line {
+    rect,
+    line {
         stroke: #222;
         stroke-width: 4px;
         fill: $bg;
