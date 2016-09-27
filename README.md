@@ -1,5 +1,6 @@
 # How-Wide-Is-It [![Build Status](https://travis-ci.org/nperez0111/howWideIsIt.svg?branch=master)](https://travis-ci.org/nperez0111/howWideIsIt)
-Tells you how wide a monitor is when given the dimensions and aspect ratio. Or what the size of the monitor should be to fill up a certain width or height
+Tells you how wide a monitor is when given the dimensions and aspect ratio. Or what the size of the monitor should be to fill up a certain width or height.
+### I also made a [website for a GUI version of this](https://nperez0111.github.io/howWideIsIt/)
 
 ![](how-wide.gif)
 
