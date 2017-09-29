@@ -1,6 +1,6 @@
 {
   "name": "how-wide-is-it-web",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "dependencies": {
     "how-wide-is-it": "^0.2.3",
     "ractive": "^0.7.3"
