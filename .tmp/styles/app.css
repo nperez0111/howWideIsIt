@@ -1,0 +1,190 @@
+*, *:before, *:after {
+  box-sizing: border-box; }
+
+html, body {
+  height: 100%; }
+
+body {
+  background: #4898dc;
+  color: #333;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
+  overflow-y: auto; }
+
+.hook {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  width: 100%;
+  height: 100%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column; }
+
+.modes {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 20px;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  min-height: 100px; }
+  @media (max-width: 600px) {
+    .modes {
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+          -ms-flex-direction: column;
+              flex-direction: column;
+      min-height: 200px; } }
+  .modes .half {
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    margin: 0;
+    padding: 0; }
+    .modes .half h3 {
+      text-align: center; }
+    .modes .half.isActive {
+      background-color: #9ec8ec; }
+      .modes .half.isActive p {
+        background-color: #9ec8ec; }
+    .modes .half p {
+      text-align: center; }
+
+.info {
+  cursor: pointer;
+  font-size: 24px;
+  color: #EEE; }
+
+button {
+  display: inline-block;
+  margin: 0 10px 0 0;
+  padding: 5px 10px;
+  font-size: 18px;
+  font-family: "Bitter", serif;
+  line-height: 1.8;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  box-shadow: none;
+  border-radius: 0;
+  color: #277fca;
+  font-weight: bold;
+  background-color: #eee;
+  border: 1px solid #4898dc; }
+  button:focus {
+    outline: none; }
+  button:hover {
+    background-color: #c8e0f5 !important; }
+  button:active, button.isSet {
+    background-color: #4898dc;
+    color: #eee;
+    border: 1px solid #eee; }
+
+.inps {
+  -webkit-box-flex: 2;
+      -ms-flex: 2;
+          flex: 2;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-height: 230px; }
+  @media (max-width: 600px) {
+    .inps {
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+          -ms-flex-direction: column;
+              flex-direction: column;
+      min-height: 460px;
+      width: 100%;
+      -ms-flex-line-pack: center;
+          align-content: center; } }
+  @media (max-width: 320px) {
+    .inps {
+      margin-top: 30px; } }
+  @media (max-width: 480px) {
+    .inps {
+      min-height: 600px; } }
+  .inps label {
+    display: block;
+    max-width: 250px;
+    /*temporary*/ }
+  .inps .half {
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    margin: 0;
+    padding: 15px; }
+    .inps .half h4 {
+      text-align: center; }
+    .inps .half .container {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      margin-bottom: 30px; }
+      @media (max-width: 480px) {
+        .inps .half .container {
+          -webkit-box-orient: vertical;
+          -webkit-box-direction: normal;
+              -ms-flex-direction: column;
+                  flex-direction: column;
+          -ms-flex-line-pack: center;
+              align-content: center;
+          width: 100%; }
+          .inps .half .container .item {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-line-pack: center;
+                align-content: center; }
+            .inps .half .container .item label, .inps .half .container .item input {
+              -webkit-box-flex: 1;
+                  -ms-flex: 1;
+                      flex: 1; } }
+      .inps .half .container .quarter, .inps .half .container .item {
+        -webkit-box-flex: 1;
+            -ms-flex: 1;
+                flex: 1; }
+      .inps .half .container .item {
+        margin: 5px; }
+    .inps .half .other {
+      float: right; }
+
+/*figure out extra space when in small window*/
+.response {
+  -webkit-box-flex: 3;
+      -ms-flex: 3;
+          flex: 3; }
+
+.header {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  text-align: center;
+  min-height: 100px; }
+
+svg rect, svg line {
+  stroke: #222;
+  stroke-width: 4px;
+  fill: #4898dc;
+  stroke-dasharray: 12px; }
+svg line {
+  stroke-dasharray: none; }
+svg text {
+  font-family: "Lucida Console", Monaco, monospace; }
