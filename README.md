@@ -13,7 +13,7 @@ Tells you how wide a monitor is when given the dimensions and aspect ratio. Or w
 
 ## Example:
 
-###How Wide is a 27" monitor that is 16:9?
+### How Wide is a 27" monitor that is 16:9?
 
 ````JS
 var actualSize = require( 'how-wide-is-it' );
